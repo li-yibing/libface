@@ -1,0 +1,32 @@
+version: "3.3"
+services:
+
+  facetorch:
+    image: tomasgajarsky/facetorch:latest
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./:/opt/facetorch
+    entrypoint: [ "/bin/bash" ]
+
+  facetorch-gpu:
+    image: tomasgajarsky/facetorch-gpu:latest
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.gpu
+    volumes:
+      - ./:/opt/facetorch
+    runtime: nvidia
+    entrypoint: [ "/bin/bash" ]
+
+  facetorch-gpu-no-device:
+    image: tomasgajarsky/facetorch-gpu:latest
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.gpu
+    volumes:
+      - ./:/opt/facetorch
+    entrypoint: [ "/bin/bash" ]
