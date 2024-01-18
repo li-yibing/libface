@@ -49,15 +49,15 @@ def get_requirements(filename: str) -> List[str]:
 
 
 setup_dict = dict(
-    name="facetorch",
+    name="facelib",
     version=read_version("./version"),
-    description="Face analysis PyTorch framework.",
-    author="Tomas Gajarsky",
-    author_email="gajarsky.tomas@gmail.com",
-    maintainer="Tomas Gajarsky",
-    maintainer_email="gajarsky.tomas@gmail.com",
-    url="https://github.com/tomas-gajarsky/facetorch",
-    download_url="https://pypi.org/project/facetorch/",
+    description="Face analysis library.",
+    author="li-yibing",
+    author_email="li_yi_bing@outlook.com",
+    maintainer="li-yibing",
+    maintainer_email="li_yi_bing@outlook.com",
+    url="https://github.com/li-yibing/facelib",
+    download_url="https://pypi.org/project/facelib/",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
     classifiers=[
