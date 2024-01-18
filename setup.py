@@ -49,7 +49,7 @@ def get_requirements(filename: str) -> List[str]:
 
 
 setup_dict = dict(
-    name="facelib",
+    name="libface",
     version=read_version("./version"),
     description="Face analysis library.",
     author="li-yibing",
