@@ -43,12 +43,12 @@ conda install -c conda-forge libface
 * [Docker](https://docs.docker.com/get-docker/)
 * [Docker Compose](https://docs.docker.com/compose/install/)
 
-Docker Compose provides an easy way of building a working facetorch environment with a single command.
+Docker Compose provides an easy way of building a working libface environment with a single command.
 
 ### Run docker example
     
-* CPU: ```docker compose run facetorch python ./scripts/example.py```
-* GPU: ```docker compose run facetorch-gpu python ./scripts/example.py analyzer.device=cuda```
+* CPU: ```docker compose run libface python ./scripts/example.py```
+* GPU: ```docker compose run libface-gpu python ./scripts/example.py analyzer.device=cuda```
 
 Check *data/output* for resulting images with bounding boxes and facial 3D landmarks.
 
@@ -59,7 +59,7 @@ Check *data/output* for resulting images with bounding boxes and facial 3D landm
 The project is configured by files located in *conf* with the main file: *conf/config.yaml*. One can easily add or remove modules from the configuration.
 
 ## Components
-FaceAnalyzer is the main class of facetorch as it is the orchestrator responsible for initializing and running the following components:
+FaceAnalyzer is the main class of libface as it is the orchestrator responsible for initializing and running the following components:
 
 1. Reader - reads the image and returns an ImageData object containing the image tensor.
 2. Detector - wrapper around a neural network that detects faces.
