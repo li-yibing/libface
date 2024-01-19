@@ -66,7 +66,7 @@ setup_dict = dict(
         "Intended Audience :: Science/Research",
         "Intended Audience :: End Users/Desktop",
         "License :: OSI Approved :: Apache Software License",
-        "Natural Language :: Chinese",
+        "Natural Language :: English",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
