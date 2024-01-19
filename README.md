@@ -31,11 +31,11 @@ The models are not perfect and may be biased.
 ## Install
 [PyPI](https://pypi.org/project/facetorch/)
 ```bash
-pip install facetorch
+pip install libface
 ```
 [Conda](https://anaconda.org/conda-forge/facetorch)
 ```bash
-conda install -c conda-forge facetorch
+conda install -c conda-forge libface
 ```
 ## Usage
 
