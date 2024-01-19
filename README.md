@@ -1,4 +1,4 @@
-# ![](https://raw.githubusercontent.com/tomas-gajarsky/facetorch/main/data/facetorch-logo-42.png "facetorch logo") libface
+# LibFace
 ![build](https://github.com/tomas-gajarsky/facetorch/actions/workflows/build.yml/badge.svg?branch=main)
 ![lint](https://github.com/tomas-gajarsky/facetorch/actions/workflows/lint.yml/badge.svg?branch=main)
 [![PyPI](https://img.shields.io/pypi/v/facetorch)](https://pypi.org/project/facetorch/)
@@ -17,7 +17,7 @@
  
 [Docker Hub](https://hub.docker.com/repository/docker/tomasgajarsky/facetorch) [(GPU)](https://hub.docker.com/repository/docker/tomasgajarsky/facetorch-gpu)
 
-Facetorch is a Python library that can detect faces and analyze facial features using deep neural networks. The goal is to gather open sourced face analysis models from the community, optimize them for performance using TorchScript and combine them to create a face analysis tool that one can:
+LibFace is a Python library that can detect faces and analyze facial features using deep neural networks. The goal is to gather open sourced face analysis models from the community, optimize them for performance using TorchScript and combine them to create a face analysis tool that one can:
 
 1. configure using [Hydra](https://hydra.cc/docs/intro/) (OmegaConf)
 2. reproduce with [conda-lock](https://github.com/conda-incubator/conda-lock) and [Docker](https://docs.docker.com/get-docker/)

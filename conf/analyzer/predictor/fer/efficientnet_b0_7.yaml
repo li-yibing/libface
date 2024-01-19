@@ -1,16 +1,16 @@
-_target_: facetorch.analyzer.predictor.FacePredictor
+_target_: libface.analyzer.predictor.FacePredictor
 
 downloader:
-  _target_: facetorch.downloader.DownloaderGDrive
+  _target_: libface.downloader.DownloaderGDrive
   file_id: 1i5f8vy1dZv_u8vsJsj9CHEzHwsokIknr
-  path_local: /opt/facetorch/models/torchscript/predictor/fer/1/model.pt # str
+  path_local: /opt/libface/models/torchscript/predictor/fer/1/model.pt # str
 
 device:
   _target_: torch.device
   type: ${analyzer.device} # str
 
 preprocessor:
-  _target_: facetorch.analyzer.predictor.pre.PredictorPreProcessor
+  _target_: libface.analyzer.predictor.pre.PredictorPreProcessor
   transform:
     _target_: torchvision.transforms.Compose
     transforms:
@@ -27,7 +27,7 @@ preprocessor:
   reverse_colors: False # bool
 
 postprocessor:
-  _target_: facetorch.analyzer.predictor.post.PostArgMax
+  _target_: libface.analyzer.predictor.post.PostArgMax
   transform: None
   device: 
     _target_: torch.device

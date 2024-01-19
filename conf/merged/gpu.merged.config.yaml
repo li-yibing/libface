@@ -2,7 +2,7 @@ analyzer:
   device: cuda
   optimize_transforms: true
   reader:
-    _target_: facetorch.analyzer.reader.ImageReader
+    _target_: libface.analyzer.reader.ImageReader
     device:
       _target_: torch.device
       type: ${analyzer.device}
@@ -10,23 +10,23 @@ analyzer:
     transform:
       _target_: torchvision.transforms.Compose
       transforms:
-      - _target_: facetorch.transforms.SquarePad
+      - _target_: libface.transforms.SquarePad
       - _target_: torchvision.transforms.Resize        
         size:
         - 1080
         antialias: True
   detector:
-    _target_: facetorch.analyzer.detector.FaceDetector
+    _target_: libface.analyzer.detector.FaceDetector
     downloader:
-      _target_: facetorch.downloader.DownloaderGDrive
+      _target_: libface.downloader.DownloaderGDrive
       file_id: 1eMuOdGkiNCOUTiEbKKoPCHGCuDgiKeNC
-      path_local: /opt/facetorch/models/torchscript/detector/1/model.pt
+      path_local: /opt/libface/models/torchscript/detector/1/model.pt
     device:
       _target_: torch.device
       type: ${analyzer.device}
     reverse_colors: true
     preprocessor:
-      _target_: facetorch.analyzer.detector.pre.DetectorPreProcessor
+      _target_: libface.analyzer.detector.pre.DetectorPreProcessor
       transform:
         _target_: torchvision.transforms.Compose
         transforms:
@@ -45,7 +45,7 @@ analyzer:
       optimize_transform: ${analyzer.optimize_transforms}
       reverse_colors: ${analyzer.detector.reverse_colors}
     postprocessor:
-      _target_: facetorch.analyzer.detector.post.PostRetFace
+      _target_: libface.analyzer.detector.post.PostRetFace
       transform: None
       device:
         _target_: torch.device
@@ -57,7 +57,7 @@ analyzer:
       keep_top_k: 750
       score_threshold: 0.6
       prior_box:
-        _target_: facetorch.analyzer.detector.post.PriorBox
+        _target_: libface.analyzer.detector.post.PriorBox
         min_sizes:
         - - 16
           - 32
@@ -76,7 +76,7 @@ analyzer:
       reverse_colors: ${analyzer.detector.reverse_colors}
       expand_box_ratio: 0.0
   unifier:
-    _target_: facetorch.analyzer.unifier.FaceUnifier
+    _target_: libface.analyzer.unifier.FaceUnifier
     transform:
       _target_: torchvision.transforms.Compose
       transforms:
@@ -100,16 +100,16 @@ analyzer:
     optimize_transform: ${analyzer.optimize_transforms}
   predictor:
     embed:
-      _target_: facetorch.analyzer.predictor.FacePredictor
+      _target_: libface.analyzer.predictor.FacePredictor
       downloader:
-        _target_: facetorch.downloader.DownloaderGDrive
+        _target_: libface.downloader.DownloaderGDrive
         file_id: 19h3kqar1wlELAmM5hDyj9tlrUh8yjrCl
-        path_local: /opt/facetorch/models/torchscript/predictor/embed/1/model.pt
+        path_local: /opt/libface/models/torchscript/predictor/embed/1/model.pt
       device:
         _target_: torch.device
         type: ${analyzer.device}
       preprocessor:
-        _target_: facetorch.analyzer.predictor.pre.PredictorPreProcessor
+        _target_: libface.analyzer.predictor.pre.PredictorPreProcessor
         transform:
           _target_: torchvision.transforms.Compose
           transforms:
@@ -133,7 +133,7 @@ analyzer:
         optimize_transform: ${analyzer.optimize_transforms}
         reverse_colors: false
       postprocessor:
-        _target_: facetorch.analyzer.predictor.post.PostEmbedder
+        _target_: libface.analyzer.predictor.post.PostEmbedder
         transform: None
         device:
           _target_: torch.device
@@ -142,16 +142,16 @@ analyzer:
         labels:
         - abstract
     verify:
-      _target_: facetorch.analyzer.predictor.FacePredictor
+      _target_: libface.analyzer.predictor.FacePredictor
       downloader:
-        _target_: facetorch.downloader.DownloaderGDrive
+        _target_: libface.downloader.DownloaderGDrive
         file_id: 1WI-mP_0mGW31OHfriPUsuFS_usYh_W8p
-        path_local: /opt/facetorch/models/torchscript/predictor/verify/2/model.pt
+        path_local: /opt/libface/models/torchscript/predictor/verify/2/model.pt
       device:
         _target_: torch.device
         type: ${analyzer.device}
       preprocessor:
-        _target_: facetorch.analyzer.predictor.pre.PredictorPreProcessor
+        _target_: libface.analyzer.predictor.pre.PredictorPreProcessor
         transform:
           _target_: torchvision.transforms.Compose
           transforms:
@@ -175,7 +175,7 @@ analyzer:
         optimize_transform: ${analyzer.optimize_transforms}
         reverse_colors: true
       postprocessor:
-        _target_: facetorch.analyzer.predictor.post.PostEmbedder
+        _target_: libface.analyzer.predictor.post.PostEmbedder
         transform: None
         device:
           _target_: torch.device
@@ -184,16 +184,16 @@ analyzer:
         labels:
         - abstract
     fer:
-      _target_: facetorch.analyzer.predictor.FacePredictor
+      _target_: libface.analyzer.predictor.FacePredictor
       downloader:
-        _target_: facetorch.downloader.DownloaderGDrive
+        _target_: libface.downloader.DownloaderGDrive
         file_id: 1xoB5VYOd0XLjb-rQqqHWCkQvma4NytEd
-        path_local: /opt/facetorch/models/torchscript/predictor/fer/2/model.pt
+        path_local: /opt/libface/models/torchscript/predictor/fer/2/model.pt
       device:
         _target_: torch.device
         type: ${analyzer.device}
       preprocessor:
-        _target_: facetorch.analyzer.predictor.pre.PredictorPreProcessor
+        _target_: libface.analyzer.predictor.pre.PredictorPreProcessor
         transform:
           _target_: torchvision.transforms.Compose
           transforms:
@@ -217,7 +217,7 @@ analyzer:
         optimize_transform: ${analyzer.optimize_transforms}
         reverse_colors: false
       postprocessor:
-        _target_: facetorch.analyzer.predictor.post.PostArgMax
+        _target_: libface.analyzer.predictor.post.PostArgMax
         transform: None
         device:
           _target_: torch.device
@@ -234,16 +234,16 @@ analyzer:
         - Sadness
         - Surprise
     au:
-      _target_: facetorch.analyzer.predictor.FacePredictor
+      _target_: libface.analyzer.predictor.FacePredictor
       downloader:
-        _target_: facetorch.downloader.DownloaderGDrive
+        _target_: libface.downloader.DownloaderGDrive
         file_id: 1uoVX9suSA5JVWTms3hEtJKzwO-CUR_jV
-        path_local: /opt/facetorch/models/torchscript/predictor/au/1/model.pt # str
+        path_local: /opt/libface/models/torchscript/predictor/au/1/model.pt # str
       device:
         _target_: torch.device
         type: ${analyzer.device}
       preprocessor:
-        _target_: facetorch.analyzer.predictor.pre.PredictorPreProcessor
+        _target_: libface.analyzer.predictor.pre.PredictorPreProcessor
         transform:
           _target_: torchvision.transforms.Compose
           transforms:
@@ -267,7 +267,7 @@ analyzer:
         optimize_transform: ${analyzer.optimize_transforms}
         reverse_colors: false
       postprocessor:
-        _target_: facetorch.analyzer.predictor.post.PostMultiLabel
+        _target_: libface.analyzer.predictor.post.PostMultiLabel
         transform: None
         device:
           _target_: torch.device
@@ -318,16 +318,16 @@ analyzer:
         - left_dimpler
         - right_dimpler
     va:
-      _target_: facetorch.analyzer.predictor.FacePredictor
+      _target_: libface.analyzer.predictor.FacePredictor
       downloader:
-        _target_: facetorch.downloader.DownloaderGDrive
+        _target_: libface.downloader.DownloaderGDrive
         file_id: 1Xl4ilNCU_DgKNhITrXb3UyQUUdm3VTKS
-        path_local: /opt/facetorch/models/torchscript/predictor/va/1/model.pt
+        path_local: /opt/libface/models/torchscript/predictor/va/1/model.pt
       device:
         _target_: torch.device
         type: ${analyzer.device}
       preprocessor:
-        _target_: facetorch.analyzer.predictor.pre.PredictorPreProcessor
+        _target_: libface.analyzer.predictor.pre.PredictorPreProcessor
         transform:
           _target_: torchvision.transforms.Compose
           transforms:
@@ -351,7 +351,7 @@ analyzer:
         optimize_transform: ${analyzer.optimize_transforms}
         reverse_colors: false
       postprocessor:
-        _target_: facetorch.analyzer.predictor.post.PostLabelConfidencePairs
+        _target_: libface.analyzer.predictor.post.PostLabelConfidencePairs
         transform: None
         device:
           _target_: torch.device
@@ -364,16 +364,16 @@ analyzer:
         - 0
         - 0
     deepfake:
-      _target_: facetorch.analyzer.predictor.FacePredictor
+      _target_: libface.analyzer.predictor.FacePredictor
       downloader:
-        _target_: facetorch.downloader.DownloaderGDrive
+        _target_: libface.downloader.DownloaderGDrive
         file_id: 1GjDTwQpvrkCjXOdiBy1oMkzm7nt-bXFg
-        path_local: /opt/facetorch/models/torchscript/predictor/deepfake/1/model.pt
+        path_local: /opt/libface/models/torchscript/predictor/deepfake/1/model.pt
       device:
         _target_: torch.device
         type: ${analyzer.device}
       preprocessor:
-        _target_: facetorch.analyzer.predictor.pre.PredictorPreProcessor
+        _target_: libface.analyzer.predictor.pre.PredictorPreProcessor
         transform:
           _target_: torchvision.transforms.Compose
           transforms:
@@ -397,7 +397,7 @@ analyzer:
         optimize_transform: ${analyzer.optimize_transforms}
         reverse_colors: false
       postprocessor:
-        _target_: facetorch.analyzer.predictor.post.PostSigmoidBinary
+        _target_: libface.analyzer.predictor.post.PostSigmoidBinary
         transform: None
         device:
           _target_: torch.device
@@ -408,16 +408,16 @@ analyzer:
         - Fake
         threshold: 0.7
     align:
-      _target_: facetorch.analyzer.predictor.FacePredictor
+      _target_: libface.analyzer.predictor.FacePredictor
       downloader:
-        _target_: facetorch.downloader.DownloaderGDrive
+        _target_: libface.downloader.DownloaderGDrive
         file_id: 16gNFQdEH2nWvW3zTbdIAniKIbPAp6qBA
-        path_local: /opt/facetorch/models/torchscript/predictor/align/1/model.pt
+        path_local: /opt/libface/models/torchscript/predictor/align/1/model.pt
       device:
         _target_: torch.device
         type: ${analyzer.device}
       preprocessor:
-        _target_: facetorch.analyzer.predictor.pre.PredictorPreProcessor
+        _target_: libface.analyzer.predictor.pre.PredictorPreProcessor
         transform:
           _target_: torchvision.transforms.Compose
           transforms:
@@ -432,7 +432,7 @@ analyzer:
         optimize_transform: ${analyzer.optimize_transforms}
         reverse_colors: false
       postprocessor:
-        _target_: facetorch.analyzer.predictor.post.PostEmbedder
+        _target_: libface.analyzer.predictor.post.PostEmbedder
         transform: None
         device:
           _target_: torch.device
@@ -442,19 +442,19 @@ analyzer:
         - abstract
   utilizer:
     align:
-      _target_: facetorch.analyzer.utilizer.align.Lmk3DMeshPose
+      _target_: libface.analyzer.utilizer.align.Lmk3DMeshPose
       transform: None
       device:
         _target_: torch.device
         type: ${analyzer.device}
       optimize_transform: false
       downloader_meta:
-        _target_: facetorch.downloader.DownloaderGDrive
+        _target_: libface.downloader.DownloaderGDrive
         file_id: 11tdAcFuSXqCCf58g52WT1Rpa8KuQwe2o
-        path_local: /opt/facetorch/data/3dmm/meta.pt
+        path_local: /opt/libface/data/3dmm/meta.pt
       image_size: 120
     draw_boxes:
-      _target_: facetorch.analyzer.utilizer.draw.BoxDrawer
+      _target_: libface.analyzer.utilizer.draw.BoxDrawer
       transform: None
       device:
         _target_: torch.device
@@ -463,7 +463,7 @@ analyzer:
       color: green
       line_width: 3
     draw_landmarks:
-      _target_: facetorch.analyzer.utilizer.draw.LandmarkDrawerTorch
+      _target_: libface.analyzer.utilizer.draw.LandmarkDrawerTorch
       transform: None
       device:
         _target_: torch.device
@@ -472,10 +472,10 @@ analyzer:
       width: 2
       color: green
   logger:
-    _target_: facetorch.logger.LoggerJsonFile
-    name: facetorch
+    _target_: libface.logger.LoggerJsonFile
+    name: libface
     level: 20
-    path_file: /opt/facetorch/logs/facetorch/main.log
+    path_file: /opt/libface/logs/libface/main.log
     json_format: '%(asctime)s %(levelname)s %(message)s'
 main:
   sleep: 3

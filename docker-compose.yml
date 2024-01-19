@@ -1,32 +1,32 @@
 version: "3.3"
 services:
 
-  facetorch:
-    image: tomasgajarsky/facetorch:latest
+  libface:
+    image: liyibing666/libface:latest
     platform: linux/amd64
     build:
       context: .
       dockerfile: ./docker/Dockerfile
     volumes:
-      - ./:/opt/facetorch
+      - ./:/opt/libface
     entrypoint: [ "/bin/bash" ]
 
-  facetorch-gpu:
-    image: tomasgajarsky/facetorch-gpu:latest
+  libface-gpu:
+    image: liyibing666/libface-gpu:latest
     build:
       context: .
       dockerfile: ./docker/Dockerfile.gpu
     volumes:
-      - ./:/opt/facetorch
+      - ./:/opt/libface
     runtime: nvidia
     entrypoint: [ "/bin/bash" ]
 
-  facetorch-gpu-no-device:
-    image: tomasgajarsky/facetorch-gpu:latest
+  libface-gpu-no-device:
+    image: liyibing666/libface-gpu:latest
     platform: linux/amd64
     build:
       context: .
       dockerfile: ./docker/Dockerfile.gpu
     volumes:
-      - ./:/opt/facetorch
+      - ./:/opt/libface
     entrypoint: [ "/bin/bash" ]

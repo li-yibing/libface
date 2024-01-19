@@ -1,4 +1,4 @@
-_target_: facetorch.analyzer.unifier.FaceUnifier
+_target_: libface.analyzer.unifier.FaceUnifier
 transform:
   _target_: torchvision.transforms.Compose
   transforms:

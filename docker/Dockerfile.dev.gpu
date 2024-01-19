@@ -1,7 +1,7 @@
 FROM nvidia/cuda:11.2.2-runtime-ubuntu20.04
 
 # Set working directory
-ENV WORKDIR=/opt/facetorch
+ENV WORKDIR=/opt/libface
 WORKDIR $WORKDIR
 
 # Install base utilities
@@ -32,14 +32,14 @@ RUN conda init bash
 RUN echo "conda activate env" >> ~/.bashrc
 SHELL ["/bin/bash", "--login", "-c"]
 
-# Add facetorch to sys python path
+# Add libface to sys python path
 ENV PYTHONPATH "$PYTHONPATH:$WORKDIR/"
 # Switch default pip to conda-installed version
 RUN ln -s /opt/conda/envs/env/bin/pip /usr/bin/pip
 RUN pip install --upgrade pip
 
-# Install facetorch package
-COPY facetorch .
+# Install libface package
+COPY libface .
 COPY environment.yml setup.py version README.md ./
 RUN pip install  --no-dependencies -e .
 

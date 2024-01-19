@@ -1,5 +1,5 @@
 
-_target_: facetorch.analyzer.utilizer.draw.BoxDrawer
+_target_: libface.analyzer.utilizer.draw.BoxDrawer
 transform: None
 device:
   _target_: torch.device

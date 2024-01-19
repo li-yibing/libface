@@ -1,5 +1,5 @@
-_target_: facetorch.logger.LoggerJsonFile
-name: facetorch
+_target_: libface.logger.LoggerJsonFile
+name: libface
 level: 20
-path_file: /opt/logs/facetorch/main.log
+path_file: /opt/logs/libface/main.log
 json_format: '%(asctime)s %(levelname)s %(message)s'

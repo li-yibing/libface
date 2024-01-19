@@ -1,5 +1,5 @@
 
-_target_: facetorch.analyzer.utilizer.draw.LandmarkDrawerTorch
+_target_: libface.analyzer.utilizer.draw.LandmarkDrawerTorch
 transform: None
 device:
   _target_: torch.device

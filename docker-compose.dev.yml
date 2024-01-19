@@ -1,32 +1,32 @@
 version: "3.3"
 services:
 
-  facetorch-dev:
+  libface-dev:
     platform: linux/amd64
     build:
       context: .
       dockerfile: ./docker/Dockerfile.dev
     volumes:
-      - ./:/opt/facetorch
+      - ./:/opt/libface
     entrypoint: [ "/bin/bash" ]
 
-  facetorch-dev-gpu:
+  libface-dev-gpu:
     build:
       context: .
       dockerfile: ./docker/Dockerfile.dev.gpu
     volumes:
-      - ./:/opt/facetorch
+      - ./:/opt/libface
     shm_size: 8gb
     runtime: nvidia
     entrypoint: [ "/bin/bash" ]
 
-  facetorch-tests:
+  libface-tests:
     platform: linux/amd64
     build:
       context: .
       dockerfile: ./docker/Dockerfile.tests
     volumes:
-      - ./:/opt/facetorch
+      - ./:/opt/libface
     entrypoint:
       [
         "conda",
@@ -36,18 +36,18 @@ services:
         "env",
         "pytest",
         "-v",
-        "--cov=facetorch",
+        "--cov=libface",
         "--cov-report=term",
         "--cov-fail-under=95"
       ]
 
-  facetorch-dev-example:
+  libface-dev-example:
     platform: linux/amd64
     build:
       context: .
       dockerfile: ./docker/Dockerfile.dev
     volumes:
-      - ./:/opt/facetorch
+      - ./:/opt/libface
     entrypoint:
       [
         "conda",
@@ -59,13 +59,13 @@ services:
         "scripts/example.py"
       ]
 
-  facetorch-lock:
+  libface-lock:
     platform: linux/amd64
     build:
       context: .
       dockerfile: ./docker/Dockerfile.lock
     volumes:
-      - ./:/opt/facetorch
+      - ./:/opt/libface
     entrypoint:
       [
         "conda",
@@ -82,13 +82,13 @@ services:
         "new.conda-lock.yml"
       ]
 
-  facetorch-lock-gpu:
+  libface-lock-gpu:
     platform: linux/amd64
     build:
       context: .
       dockerfile: ./docker/Dockerfile.lock
     volumes:
-      - ./:/opt/facetorch
+      - ./:/opt/libface
     runtime: nvidia
     entrypoint:
       [

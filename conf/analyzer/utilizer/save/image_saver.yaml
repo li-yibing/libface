@@ -1,5 +1,5 @@
 
-_target_: facetorch.analyzer.utilizer.save.ImageSaver
+_target_: libface.analyzer.utilizer.save.ImageSaver
 transform: None
 device:
   _target_: torch.device

@@ -1,7 +1,7 @@
 FROM python:3.8.16-slim
 
 # Set working directory
-ENV WORKDIR=/opt/facetorch
+ENV WORKDIR=/opt/libface
 WORKDIR $WORKDIR
 
 # Install base utilities
