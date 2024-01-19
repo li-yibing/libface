@@ -1,6 +1,6 @@
 import os
 
-import facetorch
+import libface
 import pytest
 import torch
 
@@ -18,19 +18,19 @@ def test_downloader_run(analyzer):
 @pytest.mark.detector
 @pytest.mark.downloader
 def test_downloader_base_type(analyzer):
-    assert isinstance(analyzer.detector.downloader, facetorch.base.BaseDownloader)
+    assert isinstance(analyzer.detector.downloader, libface.base.BaseDownloader)
 
 
 @pytest.mark.integration
 @pytest.mark.detector
 def test_base_type(analyzer):
-    assert isinstance(analyzer.detector, facetorch.base.BaseModel)
+    assert isinstance(analyzer.detector, libface.base.BaseModel)
 
 
 @pytest.mark.integration
 @pytest.mark.detector
 def test_type(analyzer):
-    assert isinstance(analyzer.detector, facetorch.analyzer.detector.FaceDetector)
+    assert isinstance(analyzer.detector, libface.analyzer.detector.FaceDetector)
 
 
 @pytest.mark.integration
@@ -42,7 +42,7 @@ def test_model_type(analyzer):
 @pytest.mark.integration
 @pytest.mark.detector
 def test_preprocessor_base_type(analyzer):
-    assert isinstance(analyzer.detector.preprocessor, facetorch.base.BaseProcessor)
+    assert isinstance(analyzer.detector.preprocessor, libface.base.BaseProcessor)
 
 
 @pytest.mark.integration
@@ -50,14 +50,14 @@ def test_preprocessor_base_type(analyzer):
 def test_preprocessor_base_2_type(analyzer):
     assert isinstance(
         analyzer.detector.preprocessor,
-        facetorch.analyzer.detector.pre.BaseDetPreProcessor,
+        libface.analyzer.detector.pre.BaseDetPreProcessor,
     )
 
 
 @pytest.mark.integration
 @pytest.mark.detector
 def test_postprocessor_base_type(analyzer):
-    assert isinstance(analyzer.detector.postprocessor, facetorch.base.BaseProcessor)
+    assert isinstance(analyzer.detector.postprocessor, libface.base.BaseProcessor)
 
 
 @pytest.mark.integration
@@ -65,7 +65,7 @@ def test_postprocessor_base_type(analyzer):
 def test_postprocessor_base_2_type(analyzer):
     assert isinstance(
         analyzer.detector.postprocessor,
-        facetorch.analyzer.detector.post.BaseDetPostProcessor,
+        libface.analyzer.detector.post.BaseDetPostProcessor,
     )
 
 

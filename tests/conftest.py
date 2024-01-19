@@ -3,8 +3,8 @@ from os.path import abspath
 from os.path import dirname as d
 
 import pytest
-from facetorch import FaceAnalyzer
-from facetorch.datastruct import ImageData
+from libface import FaceAnalyzer
+from libface.datastruct import ImageData
 from hydra import compose, initialize
 
 root_dir = d(d(abspath(__file__)))
@@ -66,7 +66,7 @@ def pytest_configure(config):
     config.addinivalue_line("markers", "model: mark tests related to the BaseModel")
     config.addinivalue_line("markers", "response: mark tests related to the ImageData")
     config.addinivalue_line(
-        "markers", "transforms: mark tests related to the facetorch transforms"
+        "markers", "transforms: mark tests related to the libface transforms"
     )
     config.addinivalue_line(
         "markers", "endtoend: mark tests related to the end-to-end pipeline"

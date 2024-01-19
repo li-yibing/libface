@@ -1,4 +1,4 @@
-import facetorch
+import libface
 import pytest
 
 
@@ -6,11 +6,11 @@ import pytest
 @pytest.mark.utilizer
 def test_grand_base_types(analyzer):
     for utilizer in analyzer.utilizers.values():
-        assert isinstance(utilizer, facetorch.base.BaseProcessor)
+        assert isinstance(utilizer, libface.base.BaseProcessor)
 
 
 @pytest.mark.integration
 @pytest.mark.utilizer
 def test_base_types(analyzer):
     for utilizer in analyzer.utilizers.values():
-        assert isinstance(utilizer, facetorch.base.BaseUtilizer)
+        assert isinstance(utilizer, libface.base.BaseUtilizer)

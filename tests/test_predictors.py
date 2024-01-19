@@ -1,6 +1,6 @@
 import os
 
-import facetorch
+import libface
 import pytest
 import torch
 
@@ -20,21 +20,21 @@ def test_downloaders_run(analyzer):
 @pytest.mark.downloader
 def test_downloader_base_types(analyzer):
     for predictor in analyzer.predictors.values():
-        assert isinstance(predictor.downloader, facetorch.base.BaseDownloader)
+        assert isinstance(predictor.downloader, libface.base.BaseDownloader)
 
 
 @pytest.mark.integration
 @pytest.mark.predictor
 def test_base_types(analyzer):
     for predictor in analyzer.predictors.values():
-        assert isinstance(predictor, facetorch.base.BaseModel)
+        assert isinstance(predictor, libface.base.BaseModel)
 
 
 @pytest.mark.integration
 @pytest.mark.predictor
 def test_types(analyzer):
     for predictor in analyzer.predictors.values():
-        assert isinstance(predictor, facetorch.analyzer.predictor.FacePredictor)
+        assert isinstance(predictor, libface.analyzer.predictor.FacePredictor)
 
 
 @pytest.mark.integration
@@ -48,7 +48,7 @@ def test_model_types(analyzer):
 @pytest.mark.predictor
 def test_preprocessor_base_types(analyzer):
     for predictor in analyzer.predictors.values():
-        assert isinstance(predictor.preprocessor, facetorch.base.BaseProcessor)
+        assert isinstance(predictor.preprocessor, libface.base.BaseProcessor)
 
 
 @pytest.mark.integration
@@ -57,7 +57,7 @@ def test_preprocessor_base_2_types(analyzer):
     for predictor in analyzer.predictors.values():
         assert isinstance(
             predictor.preprocessor,
-            facetorch.analyzer.predictor.pre.BasePredPreProcessor,
+            libface.analyzer.predictor.pre.BasePredPreProcessor,
         )
 
 
@@ -65,7 +65,7 @@ def test_preprocessor_base_2_types(analyzer):
 @pytest.mark.predictor
 def test_postprocessor_base_types(analyzer):
     for predictor in analyzer.predictors.values():
-        assert isinstance(predictor.postprocessor, facetorch.base.BaseProcessor)
+        assert isinstance(predictor.postprocessor, libface.base.BaseProcessor)
 
 
 @pytest.mark.integration
@@ -74,7 +74,7 @@ def test_postprocessor_base_2_types(analyzer):
     for predictor in analyzer.predictors.values():
         assert isinstance(
             predictor.postprocessor,
-            facetorch.analyzer.predictor.post.BasePredPostProcessor,
+            libface.analyzer.predictor.post.BasePredPostProcessor,
         )
 
 

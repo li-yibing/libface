@@ -8,7 +8,7 @@ from pythonjsonlogger import jsonlogger
 class LoggerJsonFile:
     def __init__(
         self,
-        name: str = "facetorch",
+        name: str = "libface",
         level: int = logging.CRITICAL,
         path_file: Optional[str] = None,
         json_format: str = "%(asctime)s %(levelname)s %(message)s",

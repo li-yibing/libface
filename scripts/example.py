@@ -1,5 +1,5 @@
 import hydra
-from facetorch import FaceAnalyzer
+from libface import FaceAnalyzer
 from omegaconf import DictConfig
 
 

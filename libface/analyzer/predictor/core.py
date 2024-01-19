@@ -1,10 +1,9 @@
 from typing import List
 
 import torch
-from codetiming import Timer
-from facetorch.base import BaseDownloader, BaseModel
-from facetorch.datastruct import Prediction
-from facetorch.logger import LoggerJsonFile
+from libface.base import BaseDownloader, BaseModel
+from libface.datastruct import Prediction
+from libface.logger import LoggerJsonFile
 
 from .post import BasePredPostProcessor
 from .pre import BasePredPreProcessor
@@ -13,9 +12,6 @@ logger = LoggerJsonFile().logger
 
 
 class FacePredictor(BaseModel):
-    @Timer(
-        "FacePredictor.__init__", "{name}: {milliseconds:.2f} ms", logger=logger.debug
-    )
     def __init__(
         self,
         downloader: BaseDownloader,
@@ -38,7 +34,6 @@ class FacePredictor(BaseModel):
         self.preprocessor = preprocessor
         self.postprocessor = postprocessor
 
-    @Timer("FacePredictor.run", "{name}: {milliseconds:.2f} ms", logger=logger.debug)
     def run(self, faces: torch.Tensor) -> List[Prediction]:
         """Predicts facial features.
 

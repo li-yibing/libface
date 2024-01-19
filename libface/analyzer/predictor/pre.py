@@ -1,21 +1,15 @@
 from abc import abstractmethod
 
 import torch
-from codetiming import Timer
-from facetorch.base import BaseProcessor
-from facetorch.logger import LoggerJsonFile
-from facetorch.utils import rgb2bgr
+from libface.base import BaseProcessor
+from libface.logger import LoggerJsonFile
+from libface.utils import rgb2bgr
 from torchvision import transforms
 
 logger = LoggerJsonFile().logger
 
 
 class BasePredPreProcessor(BaseProcessor):
-    @Timer(
-        "BasePredPreProcessor.__init__",
-        "{name}: {milliseconds:.2f} ms",
-        logger=logger.debug,
-    )
     def __init__(
         self,
         transform: transforms.Compose,
@@ -69,11 +63,6 @@ class PredictorPreProcessor(BasePredPreProcessor):
         super().__init__(transform, device, optimize_transform)
         self.reverse_colors = reverse_colors
 
-    @Timer(
-        "PredictorPreProcessor.run",
-        "{name}: {milliseconds:.2f} ms",
-        logger=logger.debug,
-    )
     def run(self, faces: torch.Tensor) -> torch.Tensor:
         """Runs the trasform on a batch of face tensors.
 

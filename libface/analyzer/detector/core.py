@@ -1,8 +1,7 @@
 import torch
-from codetiming import Timer
-from facetorch.base import BaseDownloader, BaseModel
-from facetorch.datastruct import ImageData
-from facetorch.logger import LoggerJsonFile
+from libface.base import BaseDownloader, BaseModel
+from libface.datastruct import ImageData
+from libface.logger import LoggerJsonFile
 
 from .post import BaseDetPostProcessor
 from .pre import BaseDetPreProcessor
@@ -11,9 +10,6 @@ logger = LoggerJsonFile().logger
 
 
 class FaceDetector(BaseModel):
-    @Timer(
-        "FaceDetector.__init__", "{name}: {milliseconds:.2f} ms", logger=logger.debug
-    )
     def __init__(
         self,
         downloader: BaseDownloader,
@@ -36,7 +32,6 @@ class FaceDetector(BaseModel):
         self.preprocessor = preprocessor
         self.postprocessor = postprocessor
 
-    @Timer("FaceDetector.run", "{name}: {milliseconds:.2f} ms", logger=logger.debug)
     def run(self, data: ImageData) -> ImageData:
         """Detect all faces in the image.
 

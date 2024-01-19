@@ -1,4 +1,4 @@
-import facetorch
+import libface
 import pytest
 import torch
 
@@ -6,7 +6,7 @@ import torch
 @pytest.mark.integration
 @pytest.mark.reader
 def test_base_type(analyzer):
-    assert isinstance(analyzer.reader, facetorch.base.BaseReader)
+    assert isinstance(analyzer.reader, libface.base.BaseReader)
 
 
 @pytest.mark.endtoend

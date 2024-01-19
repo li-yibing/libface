@@ -1,9 +1,8 @@
 import torch
 import torchvision
-from codetiming import Timer
-from facetorch.base import BaseUtilizer
-from facetorch.datastruct import ImageData
-from facetorch.logger import LoggerJsonFile
+from libface.base import BaseUtilizer
+from libface.datastruct import ImageData
+from libface.logger import LoggerJsonFile
 from torchvision import transforms
 
 logger = LoggerJsonFile().logger
@@ -32,7 +31,6 @@ class BoxDrawer(BaseUtilizer):
         self.color = color
         self.line_width = line_width
 
-    @Timer("BoxDrawer.run", "{name}: {milliseconds:.2f} ms", logger=logger.debug)
     def run(self, data: ImageData) -> ImageData:
         """Draws face boxes to the image tensor.
 
@@ -77,7 +75,6 @@ class LandmarkDrawerTorch(BaseUtilizer):
         self.width = width
         self.color = color
 
-    @Timer("LandmarkDrawer.run", "{name}: {milliseconds:.2f} ms", logger=logger.debug)
     def run(self, data: ImageData) -> ImageData:
         """Draws 3D face landmarks to the image tensor.
 

@@ -1,6 +1,6 @@
 import pytest
 import torch
-from facetorch.transforms import SquarePad
+from libface.transforms import SquarePad
 
 
 @pytest.mark.unit

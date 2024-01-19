@@ -2,10 +2,9 @@ import os
 from typing import List, Tuple, Union
 import torch
 import numpy as np
-from codetiming import Timer
-from facetorch.base import BaseDownloader, BaseUtilizer
-from facetorch.datastruct import ImageData
-from facetorch.logger import LoggerJsonFile
+from libface.base import BaseDownloader, BaseUtilizer
+from libface.datastruct import ImageData
+from libface.logger import LoggerJsonFile
 from torchvision import transforms
 
 logger = LoggerJsonFile().logger
@@ -65,7 +64,6 @@ class Lmk3DMeshPose(BaseUtilizer):
         self.w_exp_base = self.w_exp[self.keypoints]
         self.dim = self.w_shp.shape[0] // 3
 
-    @Timer("Lmk3DMeshPose.run", "{name}: {milliseconds:.2f} ms", logger=logger.debug)
     def run(self, data: ImageData) -> ImageData:
         """Runs the Lmk3DMeshPose class functionality - convert the face parameter vector to 3D landmarks, mesh and pose.
 

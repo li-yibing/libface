@@ -1,9 +1,8 @@
 import os
 import gdown
-from codetiming import Timer
 
-from facetorch import base
-from facetorch.logger import LoggerJsonFile
+from libface import base
+from libface.logger import LoggerJsonFile
 
 logger = LoggerJsonFile().logger
 
@@ -18,7 +17,6 @@ class DownloaderGDrive(base.BaseDownloader):
         """
         super().__init__(file_id, path_local)
 
-    @Timer("DownloaderGDrive.run", "{name}: {milliseconds:.2f} ms", logger=logger.debug)
     def run(self):
         """Downloads a file from Google Drive."""
         os.makedirs(os.path.dirname(self.path_local), exist_ok=True)

@@ -1,22 +1,17 @@
 from abc import abstractmethod
 
 import torch
-from codetiming import Timer
-from facetorch.base import BaseProcessor
-from facetorch.datastruct import ImageData
-from facetorch.logger import LoggerJsonFile
-from facetorch.utils import rgb2bgr
+from libface.base import BaseProcessor
+from libface.datastruct import ImageData
+from libface.logger import LoggerJsonFile
+from libface.utils import rgb2bgr
 from torchvision import transforms
 
 logger = LoggerJsonFile().logger
 
 
 class BaseDetPreProcessor(BaseProcessor):
-    @Timer(
-        "BaseDetPreProcessor.__init__",
-        "{name}: {milliseconds:.2f} ms",
-        logger=logger.debug,
-    )
+
     def __init__(
         self,
         transform: transforms.Compose,
@@ -53,11 +48,6 @@ class BaseDetPreProcessor(BaseProcessor):
 
 
 class DetectorPreProcessor(BaseDetPreProcessor):
-    @Timer(
-        "DetectorPreProcessor.__init__",
-        "{name}: {milliseconds:.2f} ms",
-        logger=logger.debug,
-    )
     def __init__(
         self,
         transform: transforms.Compose,
@@ -77,9 +67,6 @@ class DetectorPreProcessor(BaseDetPreProcessor):
         super().__init__(transform, device, optimize_transform)
         self.reverse_colors = reverse_colors
 
-    @Timer(
-        "DetectorPreProcessor.run", "{name}: {milliseconds:.2f} ms", logger=logger.debug
-    )
     def run(self, data: ImageData) -> ImageData:
         """Run the detector preprocessor on the image tensor in BGR format and return the transformed image tensor.
 

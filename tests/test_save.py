@@ -1,7 +1,7 @@
 import os
 
 import pytest
-from facetorch.datastruct import Response
+from libface.datastruct import Response
 
 
 @pytest.mark.endtoend

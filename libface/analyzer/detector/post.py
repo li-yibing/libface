@@ -4,22 +4,17 @@ from math import ceil
 from typing import List, Tuple, Union
 
 import torch
-from codetiming import Timer
-from facetorch.base import BaseProcessor
-from facetorch.datastruct import Detection, Dimensions, Face, ImageData, Location
-from facetorch.logger import LoggerJsonFile
-from facetorch.utils import rgb2bgr
+from libface.base import BaseProcessor
+from libface.datastruct import Detection, Dimensions, Face, ImageData, Location
+from libface.logger import LoggerJsonFile
+from libface.utils import rgb2bgr
 from torchvision import transforms
 
 logger = LoggerJsonFile().logger
 
 
 class BaseDetPostProcessor(BaseProcessor):
-    @Timer(
-        "BaseDetPostProcessor.__init__",
-        "{name}: {milliseconds:.2f} ms",
-        logger=logger.debug,
-    )
+
     def __init__(
         self,
         transform: transforms.Compose,
@@ -105,7 +100,7 @@ class PriorBox:
 
 
 class PostRetFace(BaseDetPostProcessor):
-    @Timer("PostRetFace.__init__", "{name}: {milliseconds:.2f} ms", logger=logger.debug)
+
     def __init__(
         self,
         transform: transforms.Compose,
@@ -148,7 +143,6 @@ class PostRetFace(BaseDetPostProcessor):
         self.reverse_colors = reverse_colors
         self.expand_box_ratio = expand_box_ratio
 
-    @Timer("PostRetFace.run", "{name}: {milliseconds:.2f} ms", logger=logger.debug)
     def run(
         self,
         data: ImageData,

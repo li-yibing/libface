@@ -1,10 +1,9 @@
 from typing import Optional, Union
 
 import torch
-from codetiming import Timer
-from facetorch.analyzer.predictor.core import FacePredictor
-from facetorch.datastruct import ImageData, Response
-from facetorch.logger import LoggerJsonFile
+from libface.analyzer.predictor.core import FacePredictor
+from libface.datastruct import ImageData, Response
+from libface.logger import LoggerJsonFile
 from importlib.metadata import version
 from hydra.utils import instantiate
 from omegaconf import OmegaConf
@@ -13,9 +12,6 @@ logger = LoggerJsonFile().logger
 
 
 class FaceAnalyzer(object):
-    @Timer(
-        "FaceAnalyzer.__init__", "{name}: {milliseconds:.2f} ms", logger=logger.debug
-    )
     def __init__(self, cfg: OmegaConf):
         """FaceAnalyzer is the main class that reads images, runs face detection, tensor unification and facial feature prediction.
         It also draws bounding boxes and facial landmarks over the image.
@@ -77,7 +73,6 @@ class FaceAnalyzer(object):
                     self.cfg.utilizer[utilizer_name]
                 )
 
-    @Timer("FaceAnalyzer.run", "{name}: {milliseconds:.2f} ms", logger=logger.debug)
     def run(
         self,
         path_image: str,
@@ -126,7 +121,7 @@ class FaceAnalyzer(object):
         data.path_output = path_output
 
         try:
-            data.version = version("facetorch")
+            data.version = version("libface")
         except Exception as e:
             self.logger.warning("Could not get version number", extra={"error": e})
 

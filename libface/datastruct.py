@@ -2,9 +2,8 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
 import torch
-from codetiming import Timer
 
-from facetorch.logger import LoggerJsonFile
+from libface.logger import LoggerJsonFile
 
 logger = LoggerJsonFile().logger
 
@@ -139,7 +138,7 @@ class Face:
 
 @dataclass
 class ImageData:
-    """The main data class used for passing data between the different facetorch modules.
+    """The main data class used for passing data between the different libface modules.
 
     Attributes:
         path_input (str): Path to the input image.
@@ -149,7 +148,7 @@ class ImageData:
         dims (Dimensions): Dimensions of the image (height, width).
         det (Detection): Detection data given by the detector.
         faces (List[Face]): List of faces in the image.
-        version (str): Version of the facetorch library.
+        version (str): Version of the libface library.
 
     """
 
@@ -208,9 +207,6 @@ class ImageData:
         """Reset the detection object to empty state."""
         self.det = Detection()
 
-    @Timer(
-        "ImageData.reset_faces", "{name}: {milliseconds:.2f} ms", logger=logger.debug
-    )
     def reset_tensors(self) -> None:
         """Reset the tensors to empty state."""
         self.reset_img()
@@ -249,7 +245,7 @@ class Response:
 
     Attributes:
         faces (List[Face]): List of faces in the image.
-        version (str): Version of the facetorch library.
+        version (str): Version of the libface library.
 
     """
 

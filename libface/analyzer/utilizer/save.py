@@ -1,10 +1,9 @@
 import os
 import torch
 import torchvision
-from codetiming import Timer
-from facetorch.base import BaseUtilizer
-from facetorch.datastruct import ImageData
-from facetorch.logger import LoggerJsonFile
+from libface.base import BaseUtilizer
+from libface.datastruct import ImageData
+from libface.logger import LoggerJsonFile
 from torchvision import transforms
 
 logger = LoggerJsonFile().logger
@@ -27,7 +26,6 @@ class ImageSaver(BaseUtilizer):
         """
         super().__init__(transform, device, optimize_transform)
 
-    @Timer("ImageSaver.run", "{name}: {milliseconds:.2f} ms", logger=logger.debug)
     def run(self, data: ImageData) -> ImageData:
         """Saves the image tensor to an image file, if the path_output attribute of ImageData is not None.
 
